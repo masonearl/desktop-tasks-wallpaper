@@ -1,0 +1,12 @@
+{
+  "week_of": "Week of January 27, 2026",
+  "tasks": [
+    {
+      "id": 1,
+      "task": "Example task - update this with your own tasks",
+      "priority": "high",
+      "due": "This week",
+      "status": "pending"
+    }
+  ]
+}

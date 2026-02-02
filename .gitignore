@@ -1,0 +1,16 @@
+# Generated wallpapers
+*.png
+!test-small.png
+
+# Personal task data (users should keep their own copy)
+tasks.json
+
+# macOS
+.DS_Store
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

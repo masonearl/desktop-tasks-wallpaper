@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" style="background:#2d3436;margin:0;padding:0;">
+<head>
+    <meta charset="UTF-8">
+    <title>Weekly Tasks - Portrait</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { 
+            height: 100%; 
+            width: 100%; 
+            min-height: 100%;
+            overflow: hidden;
+            background: #2d3436;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            background: linear-gradient(180deg, #2d3436 0%, #384048 50%, #3d4a52 100%);
+            background-attachment: fixed;
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 60px 40px;
+            min-height: 100vh;
+        }
+        .bg-cover {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, #2d3436 0%, #384048 50%, #3d4a52 100%);
+            z-index: -1;
+        }
+        .header { margin-bottom: 24px; z-index: 1; }
+        .header h1 { font-size: 32px; font-weight: 600; color: #e0e0e0; margin-bottom: 4px; }
+        .header .week { font-size: 13px; color: #7f8c8d; }
+        .tasks-list { list-style: none; z-index: 1; }
+        .task-item {
+            background: rgba(255,255,255,0.04);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-left: 3px solid #e17055;
+        }
+        .task-content { display: flex; align-items: flex-start; gap: 12px; }
+        .checkbox { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.25); border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+        .task-text { flex: 1; }
+        .task-title { font-size: 13px; font-weight: 500; line-height: 1.4; margin-bottom: 4px; color: rgba(255,255,255,0.9); }
+        .task-meta { font-size: 10px; color: #7f8c8d; display: flex; gap: 10px; }
+        .priority-badge { 
+            padding: 2px 5px; 
+            border-radius: 3px; 
+            font-size: 8px; 
+            font-weight: 600; 
+            text-transform: uppercase;
+            background: rgba(225,112,85,0.15); 
+            color: #e17055; 
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-cover"></div>
+    <div class="header">
+        <h1>Tasks</h1>
+        <div class="week">Week of Jan 27</div>
+    </div>
+    <ul class="tasks-list">
+        <li class="task-item">
+            <div class="task-content">
+                <div class="checkbox"></div>
+                <div class="task-text">
+                    <div class="task-title">Example task - update this with your own tasks</div>
+                    <div class="task-meta">
+                        <span class="priority-badge">HIGH</span>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</body>
+</html>

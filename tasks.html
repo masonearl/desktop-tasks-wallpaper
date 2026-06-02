@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Tasks</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            background: #2d3436;
+            background: linear-gradient(145deg, #2d3436 0%, #384048 40%, #3d4a52 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0;
+            padding-left: 60px;
+        }
+        
+        .container {
+            max-width: 420px;
+            width: 100%;
+        }
+        
+        .header {
+            margin-bottom: 28px;
+        }
+        
+        .header h1 {
+            font-size: 38px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #e0e0e0;
+            letter-spacing: -0.5px;
+        }
+        
+        .header .week {
+            font-size: 14px;
+            color: #7f8c8d;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+        
+        .tasks-list {
+            list-style: none;
+        }
+        
+        .task-item {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        
+        .task-item.high {
+            border-left: 3px solid #e17055;
+        }
+        
+        .task-item.medium {
+            border-left: 3px solid #fdcb6e;
+        }
+        
+        .task-item.low {
+            border-left: 3px solid #00b894;
+        }
+        
+        .task-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .task-item.completed .checkbox {
+            background: #00b894;
+            border-color: #00b894;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .task-item.completed .checkbox::after {
+            content: "✓";
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        .task-text {
+            flex: 1;
+        }
+        
+        .task-title {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 6px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .task-item.completed .task-title {
+            text-decoration: line-through;
+            opacity: 0.4;
+        }
+        
+        .task-meta {
+            font-size: 11px;
+            color: #7f8c8d;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .priority-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        
+        .priority-badge.high {
+            background: rgba(225, 112, 85, 0.15);
+            color: #e17055;
+        }
+        
+        .priority-badge.medium {
+            background: rgba(253, 203, 110, 0.15);
+            color: #fdcb6e;
+        }
+        
+        .priority-badge.low {
+            background: rgba(0, 184, 148, 0.15);
+            color: #00b894;
+        }
+        
+        .due-label {
+            color: #636e72;
+        }
+        
+        .empty-state {
+            text-align: left;
+            padding: 30px 0;
+            color: #636e72;
+        }
+        
+        .empty-state .icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>This Week</h1>
+            <div class="week" id="week-label">January 27 - February 2, 2026</div>
+        </div>
+        
+        <ul class="tasks-list" id="tasks-list">
+        </ul>
+    </div>
+    
+    <script>
+        const tasksData = {
+  "week_of": "Week of January 27, 2026",
+  "tasks": [
+    {
+      "id": 1,
+      "task": "Example task - update this with your own tasks",
+      "priority": "high",
+      "due": "This week",
+      "status": "pending"
+    }
+  ]
+};
+        
+        function renderTasks() {
+            const container = document.getElementById('tasks-list');
+            const weekLabel = document.getElementById('week-label');
+            
+            weekLabel.textContent = tasksData.week_of;
+            
+            if (tasksData.tasks.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="icon">✨</div>
+                        <p>No tasks this week</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = tasksData.tasks.map(task => `
+                <li class="task-item ${task.priority} ${task.status === 'completed' ? 'completed' : ''}">
+                    <div class="task-content">
+                        <div class="checkbox"></div>
+                        <div class="task-text">
+                            <div class="task-title">${task.task}</div>
+                            <div class="task-meta">
+                                <span class="priority-badge ${task.priority}">${task.priority}</span>
+                                <span class="due-label">📅 ${task.due}</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            `).join('');
+        }
+        
+        renderTasks();
+    </script>
+    <script defer src="/js/wiki-anchors.js"></script>
+</body>
+</html>
